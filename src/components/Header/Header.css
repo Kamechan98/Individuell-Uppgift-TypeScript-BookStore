@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  .Header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40vh;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 3px 3px 5px 2px #00000042;
+  }
+
+  .top {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .bottom {
+    height: 160px;
+    background-color: rgb(214, 214, 214);
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    box-shadow: 3px 3px 5px 2px #00000042;
+  }
+
+p {
+    padding-top:5px;
+}
+
+  #call-to-action {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  a:link {
+    text-decoration: none;
+    font-size: large;
+    font-weight: 300;
+    color: rgb(254, 190, 13);
+  }
+  a:visited {
+    font-size: large;
+    font-weight:bolder;
+    color: rgb(254, 190, 13);
+  }
+  .header-link{
+    position: relative;
+    top: -30px;
+  }
+
+  
+button {
+    background-color: rgb(254, 190, 13);
+    border-radius: 10%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    margin-top: 8px;
+    text-decoration: underline;
+    font-size: large;
+    color: whitesmoke;
+    text-transform: capitalize;
+    text-align:center;
+    display: flex;
+    align-items: center;
+  }
+
+  #img{
+    height: 40px;
+    width: 40px;
+    margin-top: 15px;
+    position: relative;
+    right: 650px;
+  }
+
+  #shopping-cart {
+    margin-top: 9px;
+    text-decoration: underline;
+    font-size: large;
+    color: whitesmoke;
+    text-transform: capitalize;
+    text-align:center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 50px;
+    background-color: transparent;
+  }
+
+#shop-img {
+    height: 30px;
+  }
