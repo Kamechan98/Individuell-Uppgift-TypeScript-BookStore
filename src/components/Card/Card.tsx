@@ -15,7 +15,7 @@ const Card = () => {
     const unsubscribe = onSnapshot(collection(db, "books"), (snapshot) => {
       const productData: Book[] = snapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => {
         const data = doc.data();
-        console.log("books",data);
+        // console.log("books",data);
         return data as Book;
       });
       setBooks(productData);
@@ -23,7 +23,7 @@ const Card = () => {
 
     return () => unsubscribe(); // Unsubscribe from the listener when the component is unmounting
   }, []);
-  console.log(books);
+  // console.log(books);
 
   return (
     <div className='product-list' id='product-list'>

@@ -3,56 +3,67 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { Book } from '../utilities/product'
 import { db } from "../firebase/config"
-import { DocumentData, QueryDocumentSnapshot, collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, doc,  getDoc } from 'firebase/firestore'
 
-interface BookProps {
-bookId: string; // Prop for the book ID you want to find
-}
-
-export const DetailPage: React.FC<BookProps> = ({ bookId }) => {
+const DetailPage: React.FC = () => {
   const { id } = useParams();
-  const [book, setBook] = useState<Book | undefined>(); // Use Book | null for the single book
+  const [book, setBook] = useState<Book | undefined>(undefined);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'books'), (snapshot) => {
-      const bookData: Book | undefined = snapshot.docs
-      .map((doc: QueryDocumentSnapshot<DocumentData>) => ({
-        ...doc.data(),
-        id: doc.id,
-      } as Book))
-      .find((b) => b.id === bookId);
+    const fetchBook = async () => {
+      try {
+        if (!id) {
+          console.log('ID parameter is missing.');
+          return;
+        }
 
-    setBook(bookData);
+        const bookDocRef = doc(db, 'books', id);
+        const bookSnapshot = await getDoc(bookDocRef);
 
-    if (!bookData) {
-      // Handle the case where the book with the given ID is not found
-      console.log(`Book with ID ${bookId} not found.`);
-    }
-  });
+        if (bookSnapshot.exists()) {
+          const bookData: Book = {
+            id: bookSnapshot.id,
+            Title: bookSnapshot.get('Title'),
+            Category: bookSnapshot.get('Category'),
+            Price: bookSnapshot.get('Price'),
+            Author: bookSnapshot.get('Author'),
+            Description: bookSnapshot.get('Description'),
+            Year: bookSnapshot.get('Year'),
+            ISBN: bookSnapshot.get('ISBN'),
+            imgURL: bookSnapshot.get('imgURL'),
+          };
+          setBook(bookData);
+        } else {
+          console.log(`Book with ID ${id} not found.`);
+        }
+      } catch (error) {
+        console.error('Error fetching book:', error);
+      }
+    };
 
-  return () => unsubscribe(); // Unsubscribe from the listener when the component is unmounting
-}, [bookId]); // Re-run the effect when the bookId prop changes
-
-console.log(book);
+    fetchBook();
+  }, [id]);
+  
 
   // Render the book information if found
-
   return (
-              <div className="product-details">
-            {book ? (
-              <>
-                <p>Title: {book.Title}</p>
-                <p>Category: {book.Category}</p>
-                <p>Price: ${book.Price}</p>
-                <p>Author: {book.Author}</p>
-                <p>Description: {book.Description}</p>
-                <p>Year: {book.Year}</p>
-                <p>ISBN: {book.ISBN}</p>
-                <img src={book.imgURL} alt={book.Title} />
-              </>
-            ) : (
-              <p>Book not found.</p>
-            )}
-          </div>
-        );
+    <div className="product-details">
+      {book ? (
+        <>
+          <p>Title: {book.Title}</p>
+          <p>Category: {book.Category}</p>
+          <p>Price: ${book.Price}</p>
+          <p>Author: {book.Author}</p>
+          <p>Description: {book.Description}</p>
+          <p>Year: {book.Year}</p>
+          <p>ISBN: {book.ISBN}</p>
+          <img src={book.imgURL} alt={book.Title} />
+        </>
+      ) : (
+        <p>Book not found.</p>
+      )}
+    </div>
+  );
 };
+
+export default DetailPage;
