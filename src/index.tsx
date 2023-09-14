@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
 import { BrowserRouter } from "react-router-dom"
 import reportWebVitals from './reportWebVitals';
 import Header from './components/Header/Header';
-import ProductService from './service/productService';
-import Card from './components/Card/Card';
+import App from './App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Header />
-    <Card/>
+    <App />
     </BrowserRouter>
   </React.StrictMode>
 );

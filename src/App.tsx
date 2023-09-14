@@ -1,23 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-// import './App.css';
-import { useParams } from 'react-router-dom';
+// import logo from './logo.svg';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './pages/Home';
 import Create from './pages/Create';
-import Book from './pages/Book';
 import DetailPage from './pages/DetailPage';
-// import { DetailPage } from './pages/DetailPage';
+import Shop from './pages/Shop';
+// import DetailPage from './components/DetailPage';
 
 function App() {
-  const { id } = useParams()
   return (
-    
     <div>
       <Routes>
-        <Route path='/Home' element={<Home/>} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/create' element={<Create />} />
         <Route path='/book/:id' element={<DetailPage/>} />
-        <Route path='/Create' element={<Create/>} />
+        <Route path='/shop' element={<Shop/>} />
       </Routes>
     </div>
   );
