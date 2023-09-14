@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebase/config';
+import { useBooks } from '../context/BooksContext';
+import { useCart } from '../context/CartContext';
 
 interface DocData {
   id: string;
@@ -9,33 +11,18 @@ interface DocData {
 }
 
 const DetailPage = () => {
+
+  const cart = useCart()
   const { id } = useParams();
-  const [book, setBook] = useState<DocData | null>(null);
+  const {books} =useBooks()
+  const [book, setBook] = useState<Book | null>(null);
 
   useEffect(() => {
-    const getDocAsync = async () => {
-      try {
-        if (id) {
-          console.log("ID",id)
-          const docRef = doc(db, 'books', id);
-          console.log("docRef",docRef.path)
-
-          const docSnapshot = await getDoc(docRef);
-
-          if (!docSnapshot.exists()) {
-            console.log('Could not find that document')
-          } else {
-            setBook({ id: docSnapshot.id, ...docSnapshot.data() } as DocData);
-
-          }
-        }
-      } catch (err) {
-        console.log('An error occurred while fetching the document')
-      }
-    };
-
-    getDocAsync();
-  }, [id]);
+    if(books ) {
+      const _book = books.find(b => b.id === id) || null
+      setBook(_book)
+    }
+  }, [id,books]);
 
     return (
     <>
@@ -43,7 +30,11 @@ const DetailPage = () => {
         <div>
           <h1>Title: {book.Title}</h1>
           <img src={book.imgURL} alt={book.Title} />
-          <button className='cart-btn' id='cart-btn'>Add To Cart</button>
+          <button onClick={(e)=> {
+          e.preventDefault()
+          e.stopPropagation()
+          cart.saveToCart(book)
+        }} className='cart-btn' id='cart-btn'>Add To Cart</button>
           <p>Category: {book.Category}</p>
           <p>Price: ${book.Price}</p>
           <p>Author: {book.Author}</p>

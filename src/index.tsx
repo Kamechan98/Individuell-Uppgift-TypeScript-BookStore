@@ -5,16 +5,23 @@ import { BrowserRouter } from "react-router-dom"
 import reportWebVitals from './reportWebVitals';
 import Header from './components/Header/Header';
 import App from './App';
+import BooksProvider from './context/BooksContext';
+import CartProvider from './context/CartContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <CartProvider>
+    <BooksProvider>
     <BrowserRouter>
     <Header />
     <App />
     </BrowserRouter>
+    </BooksProvider>  
+    </CartProvider>
+    
   </React.StrictMode>
 );
 

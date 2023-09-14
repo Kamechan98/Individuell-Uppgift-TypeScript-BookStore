@@ -38,12 +38,31 @@ ul {
     width: 500px;
 }
 #cart-btn{
-background-color: green;
+background-color: #008000;
 width: 100px;
 height: 50px;
+}
+
+#cart-btn:disabled {
+    background-color: #587958;
 }
 
 #book-img{
     height: 300px;
     width: 300px;
+}
+
+#add {
+    text-decoration: none;
+    width: 80px;
+}
+
+#remove {
+    text-decoration: none;
+    width: 80px;
+}
+
+#delete {
+    text-decoration: none;
+    width: 80px;
 }

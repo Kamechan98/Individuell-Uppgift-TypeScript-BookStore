@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import Card from '../components/Card/Card'
-import { DocumentData, QueryDocumentSnapshot, collection, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { useBooks } from '../context/BooksContext';
 
 export const Home = () => {
-  const [books, setBooks] = useState<Book[]>([]);
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "books"), (snapshot) => {
-      const productData: Book[] = snapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => {
-        const data = doc.data();
-        console.log("books",data);
-        return data as Book;
-      });
-      setBooks(productData);
-    });
-
-    return () => unsubscribe(); // Unsubscribe from the listener when the component is unmounting
-  }, []);
+const {books} = useBooks()
+  
   console.log(books);
   return (
     <>
