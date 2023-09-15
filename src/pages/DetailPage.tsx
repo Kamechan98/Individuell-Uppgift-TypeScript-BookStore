@@ -3,6 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebase/config';
 import { useBooks } from '../context/BooksContext';
+import '../components/Card/Card.css'
 import { useCart } from '../context/CartContext';
 
 interface DocData {
@@ -27,7 +28,7 @@ const DetailPage = () => {
     return (
     <>
       {book ? (
-        <div>
+        <div id='card-detail'>
           <h1>Title: {book.Title}</h1>
           <img src={book.imgURL} alt={book.Title} />
           <button onClick={(e)=> {

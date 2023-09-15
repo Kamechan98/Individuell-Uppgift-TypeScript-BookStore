@@ -1,12 +1,28 @@
 .product-list{
-    background-color: rgb(227, 226, 226);
+    background-color: #e3e2e2;
     display: grid;
     grid-template-columns: min-content;
     padding-left: 50px;
 }
 
 #card{
+    width: 560px;
     color: black;
+    border: #000000 solid 3px;
+    margin-top: 20px;
+    margin-left: 400px;
+    padding-bottom: 20px;
+}
+
+#card-detail{
+    color: black;
+    border: #000000 solid 3px;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .book {
@@ -29,9 +45,9 @@ width: 80%;
     color: black;
 }
 
-#book-title {
+/* #book-title {
     margin-left: 50px;
-}
+} */
 ul {
     display: flex;
     flex-direction: column;
@@ -53,16 +69,48 @@ height: 50px;
 }
 
 #add {
+    padding: 20px;
     text-decoration: none;
     width: 80px;
+    text-align: center;
+    background-color: #008000;
+    justify-content: center;
+
 }
 
 #remove {
+    padding: 20px;
     text-decoration: none;
     width: 80px;
+    text-align: center;
+    background-color:#ff0000;
+    justify-content: center;
+
 }
 
 #delete {
+    padding: 20px;
     text-decoration: none;
     width: 80px;
+    background-color: #000000;
+    justify-content: center;
+}
+
+#quantity{
+    border: solid black 1px;
+    width: 40px;
+    padding: 3px;
+    text-align: center;
+    background-color: #e3e3e3;
+}
+
+#shop-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid black 2px;
+    margin-left: 50px;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

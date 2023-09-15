@@ -9,7 +9,7 @@ const Header = () => {
       <div className='call-to-action' id='call-to-action'>
       <a href="/" className='header-link'><h1><img src="https://www.sfbok.se/sites/all/themes/custom/sfbok/img/logo2x.png" alt="" /></h1></a>  
       </div>
-      <a href='/post' id='create-btn'>Create new product</a>
+      <a href='/create' id='create-btn'>Create new product</a>
       <a href='/shop' id='create-btn'>Shop</a>
       <a href='/contact-us' id='create-btn'>Contact us</a>
       <button>
