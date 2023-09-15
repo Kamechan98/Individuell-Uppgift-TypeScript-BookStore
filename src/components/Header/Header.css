@@ -60,6 +60,10 @@ p {
     font-weight:bolder;
     color: rgb(254, 190, 13);
   }
+
+  #shop-btn {
+    margin-top: -12px;
+  }
   .header-link{
     position: relative;
     top: -30px;
@@ -106,4 +110,5 @@ button {
 
 #shop-img {
     height: 30px;
+    width: 30px;
   }
